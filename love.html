@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Shape</title>
+    <title>Animated Heart with Anime.js</title>
     <style>
         body {
             display: flex;
@@ -12,28 +12,30 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
-            overflow: hidden;
+            background-color: #fce4ec;
+            /* Màu hồng nhạt */
+            font-family: 'Arial', sans-serif;
+            /* Font chữ */
         }
 
         .heart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
             width: 100px;
             height: 90px;
-            animation: moveHeart 5s infinite alternate;
+            position: relative;
+            transform-origin: center;
+            animation: heartbeat 1s infinite;
+            cursor: pointer;
         }
 
         .heart:before,
         .heart:after {
-            position: absolute;
             content: "";
+            position: absolute;
             left: 50px;
             top: 0;
             width: 50px;
             height: 80px;
-            background-color: red;
+            background-color: rgb(251, 151, 167);
             border-radius: 50px 50px 0 0;
             transform: rotate(-45deg);
             transform-origin: 0 100%;
@@ -45,36 +47,66 @@
             transform-origin: 100% 100%;
         }
 
-        @keyframes moveHeart {
+        @keyframes heartbeat {
             0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            25% {
-                transform: translate(-50%, -50%) rotate(20deg);
+                transform: scale(1);
             }
 
             50% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            75% {
-                transform: translate(-50%, -50%) rotate(-20deg);
+                transform: scale(1.2);
             }
 
             100% {
-                transform: translate(-50%, -50%) rotate(0deg);
+                transform: scale(1);
             }
+        }
+
+        /* Tạo kiểu chữ lãng mạn */
+        .word-art {
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff69b4;
+            /* Màu hồng */
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+            /* Hiệu ứng đổ bóng */
+            font-family: 'Gabriola', cursive;
+            /* Font chữ lãng mạn */
         }
     </style>
 </head>
 
 <body>
 
-    <div class="heart"></div>
+    <div class="heart" onclick="hideHeartAndShowText()"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
-        // JavaScript can be used to add interactivity, but in this case, it's not necessary for the animation.
+        function hideHeartAndShowText() {
+            var heart = document.querySelector('.heart');
+            var text = document.createElement('div');
+            text.textContent = 'Wish you always beautiful🌹';
+            text.classList.add('word-art');
+            text.style.opacity = '0';
+            document.body.appendChild(text);
+
+            anime({
+                targets: heart,
+                opacity: 0,
+                duration: 500,
+                easing: 'easeOutQuad',
+                complete: function () {
+                    heart.style.display = 'none';
+                    anime({
+                        targets: text,
+                        opacity: 1,
+                        duration: 1000,
+                        easing: 'easeInOutQuad'
+                    });
+                }
+            });
+        }
     </script>
 
 </body>
