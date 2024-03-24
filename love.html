@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Shape</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 90px;
+            animation: moveHeart 5s infinite alternate;
+        }
+
+        .heart:before,
+        .heart:after {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background-color: red;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes moveHeart {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-50%, -50%) rotate(20deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) rotate(-20deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heart"></div>
+
+    <script>
+        // JavaScript can be used to add interactivity, but in this case, it's not necessary for the animation.
+    </script>
+
+</body>
+
+</html>
