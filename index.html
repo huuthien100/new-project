@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flying Heart</title>
+    <title>Love</title>
     <style>
         body,
         html {
@@ -70,22 +70,6 @@
             100% {
                 opacity: 0;
             }
-
-            0% {
-                transform: translateX(-50%) translateY(-50%) rotate(-3deg);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(-50%) rotate(3deg);
-            }
-
-            100% {
-                transform: translateX(-50%) translateY(-50%) rotate(-3deg);
-            }
-        }
-
-        .fade-out {
-            animation: fade-out 1s ease-in-out forwards;
         }
 
         @keyframes fade-in {
@@ -96,22 +80,34 @@
             100% {
                 opacity: 1;
             }
+        }
 
-            0% {
-                transform: translateX(-50%) translateY(-50%) rotate(-3deg);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(-50%) rotate(3deg);
-            }
-
-            100% {
-                transform: translateX(-50%) translateY(-50%) rotate(-3deg);
-            }
+        .fade-out {
+            animation: fade-out 1s ease-in-out forwards;
         }
 
         .fade-in {
             animation: fade-in 2s ease-in-out forwards;
+        }
+
+        /* Hiệu ứng nền */
+        @keyframes change-background {
+            0% {
+                background-color: rgb(243, 229, 232);
+            }
+
+            50% {
+                background-color: rgb(229, 243, 232);
+            }
+
+            100% {
+                background-color: rgb(232, 229, 243);
+            }
+        }
+
+        /* Áp dụng hiệu ứng nền */
+        .change-background {
+            animation: change-background 3s ease-in-out forwards;
         }
     </style>
 </head>
@@ -149,6 +145,8 @@
 
                         .appendTo('body')
                         .addClass('fade-in');
+
+                    $('body').addClass('change-background'); // Thêm class để áp dụng hiệu ứng nền
                 }, 1000);
             });
         });
